@@ -13,8 +13,7 @@
  *
  * @noreturn
  */
-stock PUG_GetFilePath(const szFile[],szPath[],iLen)
-{
+stock PUG_GetFilePath(const szFile[],szPath[],iLen) {
 	get_localinfo("amxx_configsdir",szPath,iLen);
 	formatex(szPath,iLen,"%s/pug/%s",szPath,szFile);
 }
@@ -33,20 +32,16 @@ stock PUG_GetFilePath(const szFile[],szPath[],iLen)
  *
  * @noreturn
  */
-stock PUG_RegCommand(const szCommand[],const szFunction[],iFlags = 0,const szInfo[] = "",bool:bTranslate = true)
-{
+stock PUG_RegCommand(const szCommand[],const szFunction[],iFlags = 0,const szInfo[] = "",bool:bTranslate = true) {
 	new szBuffer[16];
 	formatex(szBuffer,charsmax(szBuffer),(iFlags == ADMIN_ALL) ? ".%s" : "!%s",szCommand);
 	
-	if(szInfo[0] && bTranslate)
-	{
+	if(szInfo[0] && bTranslate) {
 		new szKey[64];
 		format(szKey,charsmax(szKey),"%L",LANG_SERVER,szInfo);
 
 		register_clcmd(szBuffer,szFunction,iFlags,szKey);
-	}
-	else
-	{
+	} else {
 		register_clcmd(szBuffer,szFunction,iFlags,szInfo);
 	}
 }
@@ -64,10 +59,8 @@ stock PUG_RegCommand(const szCommand[],const szFunction[],iFlags = 0,const szInf
  *
  * @noreturn
  */
-stock PUG_CommandClient(id,szCommand[],szLang[],iClient,iCheck)
-{
-	if(iCheck)
-	{
+stock PUG_CommandClient(id,szCommand[],szLang[],iClient,iCheck) {
+	if(iCheck) {
 		new szName[MAX_NAME_LENGTH];
 		get_user_name(iClient,szName,charsmax(szName));
 	
@@ -89,10 +82,8 @@ stock PUG_CommandClient(id,szCommand[],szLang[],iClient,iCheck)
  *
  * @noreturn
  */
-stock PUG_ExecuteCommand(id,szCommand[],szLang[],bCheck)
-{
-	if(bCheck)
-	{
+stock PUG_ExecuteCommand(id,szCommand[],szLang[],bCheck) {
+	if(bCheck) {
 		new szName[MAX_NAME_LENGTH];
 		get_user_name(id,szName,charsmax(szName));
 		
@@ -112,23 +103,19 @@ stock PUG_ExecuteCommand(id,szCommand[],szLang[],bCheck)
  *
  * @return              	Maps Loaded count
  */
-stock PUG_GetMapList(szData[][],iLen)
-{
+stock PUG_GetMapList(szData[][],iLen) {
 	new szPath[PLATFORM_MAX_PATH];
 	PUG_GetFilePath("maps.rc",szPath,charsmax(szPath));
 	
-	if(file_exists(szPath))
-	{
+	if(file_exists(szPath)) {
 		new iFile = fopen(szPath,"rb");
 		new szLine[MAX_NAME_LENGTH],iCount;
 	
-		while(!feof(iFile) && (iCount < iLen))
-		{
+		while(!feof(iFile) && (iCount < iLen)) {
 			fgets(iFile,szLine,charsmax(szLine));
 			trim(szLine);
 			
-			if(is_map_valid(szLine) && !equali(MapName,szLine))
-			{
+			if(is_map_valid(szLine) && !equali(MapName,szLine)) {
 				copy(szData[iCount++],iLen,szLine);
 			}
 		}
@@ -151,28 +138,23 @@ stock PUG_GetMapList(szData[][],iLen)
  *
  * @noreturn
  */
-stock PUG_BuildHelpFile(iLevel)
-{
+stock PUG_BuildHelpFile(iLevel) {
 	new szPath[64];	
 	PUG_GetFilePath((iLevel == ADMIN_ALL) ? "help.htm" : "admin.htm",szPath,charsmax(szPath));
 	
-	if(!file_exists(szPath))
-	{
+	if(!file_exists(szPath)) {
 		new iCommands = get_concmdsnum(iLevel);
 		
-		if(iCommands)
-		{
+		if(iCommands) {
 			new iFile = fopen(szPath,"wt");
 			fputs(iFile,"<style type='text/css'>body{background:#000;margin:2px;color:#FFB000;font-family:Tahoma}</style><table width='100%%'>");
 			
 			new szString[MAX_NAME_LENGTH],iFlag,szInfo[128];
 			
-			for(new i;i < iCommands;i++)
-			{
+			for(new i;i < iCommands;i++) {
 				get_concmd(i,szString,charsmax(szString),iFlag,szInfo,charsmax(szInfo),iLevel);
 				
-				if((szString[0] == ((iLevel == ADMIN_ALL) ? '.' : '!')) && szInfo[0])
-				{
+				if((szString[0] == ((iLevel == ADMIN_ALL) ? '.' : '!')) && szInfo[0]) {
 					replace_all(szInfo,sizeof(szInfo),"<","&#60;");
 					replace_all(szInfo,sizeof(szInfo),">","&#62;");
 					
@@ -194,41 +176,31 @@ stock PUG_BuildHelpFile(iLevel)
  * @param Help			Build file as html to help admins
  * @noreturn
  */
-stock PUG_BuildCvarsFile(szFile[],bool:bHelp)
-{
+stock PUG_BuildCvarsFile(szFile[],bool:bHelp) {
 	new szPath[64];	
 	PUG_GetFilePath(szFile,szPath,charsmax(szPath));
 	
-	if(!file_exists(szPath))
-	{
+	if(!file_exists(szPath)) {
 		new iCvarsNum = get_plugins_cvarsnum();
 		
-		if(iCvarsNum)
-		{
+		if(iCvarsNum) {
 			new iFile = fopen(szPath,"wt");
 			
-			if(bHelp)
-			{
+			if(bHelp) {
 				fputs(iFile,"<style type='text/css'>body{background:#000;margin:2px;color:#FFB000;font-family:Tahoma}</style><table width='100%%'>");
 			}
 			
 			new szName[MAX_NAME_LENGTH],iFlag,iPlugin,iHandle,szDesc[128],szValue[MAX_NAME_LENGTH];
 			
-			for(new i;i < iCvarsNum;i++)
-			{
-				if(get_plugins_cvar(i,szName,charsmax(szName),iFlag,iPlugin,iHandle,szDesc,charsmax(szDesc)))
-				{
-					if((szName[0] == 'p') && (szName[1] == 'u') && (szName[2] == 'g'))
-					{
-						if(bHelp)
-						{
+			for(new i;i < iCvarsNum;i++) {
+				if(get_plugins_cvar(i,szName,charsmax(szName),iFlag,iPlugin,iHandle,szDesc,charsmax(szDesc))) {
+					if((szName[0] == 'p') && (szName[1] == 'u') && (szName[2] == 'g')) {
+						if(bHelp) {
 							replace_all(szDesc,sizeof(szDesc),"<","&#60;");
 							replace_all(szDesc,sizeof(szDesc),">","&#62;");
 							
 							fprintf(iFile,"<tr><td>%s</td><td>%s</td></tr>",szName,szDesc);
-						}
-						else
-						{
+						} else {
 							get_pcvar_string(iHandle,szValue,charsmax(szValue));
 							
 							fprintf(iFile,"%s		^"%s^"			// %s^n",szName,szValue,szDesc);

@@ -12,8 +12,7 @@
  *
  * @return 	Return the number of active players in teams
  */
- stock PUG_GetPlayersNum(bool:bBots = false)
- {
+ stock PUG_GetPlayersNum(bool:bBots = false) {
 	new iPlayers[MAX_PLAYERS],iNum[2];
 	
 	get_players(iPlayers,iNum[0],bBots ? "he" : "che","TERRORIST");
@@ -30,8 +29,7 @@
  *
  * @return 	Return the number of active players
  */
- stock PUG_GetPlayersTeam(CsTeams:iTeam,bool:bBots = true)
- {
+ stock PUG_GetPlayersTeam(CsTeams:iTeam,bool:bBots = true) {
  	if(CS_TEAM_T <= iTeam <= CS_TEAM_CT)
 	{
 		new iPlayers[MAX_PLAYERS],iNum;
@@ -51,10 +49,8 @@
  *
  * @noreturn
  */
-stock PUG_SetMapObjectives(bool:bBlock)
-{
-	static const szMapEntity[][] = 
-	{
+stock PUG_SetMapObjectives(bool:bBlock) {
+	static const szMapEntity[][] =  {
 		"func_bomb_target",
 		"info_bomb_target",
 		"func_hostage_rescue",
@@ -64,8 +60,7 @@ stock PUG_SetMapObjectives(bool:bBlock)
 		"func_escapezone"
 	};
 	
-	static const szMapEntityBlock[][] = 
-	{
+	static const szMapEntityBlock[][] =  {
 		"_func_bomb_target",
 		"_info_bomb_target",
 		"_func_hostage_rescue",
@@ -77,10 +72,8 @@ stock PUG_SetMapObjectives(bool:bBlock)
 	
 	new iEntity = FM_NULLENT;
 
-	for(new i;i < sizeof(szMapEntity);i++)
-	{
-		while((iEntity = engfunc(EngFunc_FindEntityByString,iEntity,"classname",bBlock ? szMapEntity[i] : szMapEntityBlock[i])) > 0)
-		{
+	for(new i;i < sizeof(szMapEntity);i++) {
+		while((iEntity = engfunc(EngFunc_FindEntityByString,iEntity,"classname",bBlock ? szMapEntity[i] : szMapEntityBlock[i])) > 0) {
 			set_pev(iEntity,pev_classname,bBlock ? szMapEntityBlock[i] : szMapEntity[i]);
 		}
 	}
@@ -94,25 +87,18 @@ stock PUG_SetMapObjectives(bool:bBlock)
  *
  * @noreturn
  */
-stock PUG_SetFullBuyzone(bool:bEnable)
-{
+stock PUG_SetFullBuyzone(bool:bEnable) {
 	static iEntityBuyZone = FM_NULLENT;
 	
-	if(bEnable)
-	{
-		if(iEntityBuyZone == FM_NULLENT)
-		{
-			if((iEntityBuyZone = engfunc(EngFunc_CreateNamedEntity,engfunc(EngFunc_AllocString,"func_buyzone"))) > 0)
-			{
+	if(bEnable) {
+		if(iEntityBuyZone == FM_NULLENT) {
+			if((iEntityBuyZone = engfunc(EngFunc_CreateNamedEntity,engfunc(EngFunc_AllocString,"func_buyzone"))) > 0) {
 				dllfunc(DLLFunc_Spawn,iEntityBuyZone);
 				engfunc(EngFunc_SetSize,iEntityBuyZone,{-8191.0,-8191.0,-8191.0},{8191.0,8191.0,8191.0});
 			}
 		}
-	}
-	else
-	{
-		if(iEntityBuyZone != FM_NULLENT)
-		{
+	} else {
+		if(iEntityBuyZone != FM_NULLENT) {
 			engfunc(EngFunc_RemoveEntity,iEntityBuyZone);
 			iEntityBuyZone = FM_NULLENT;
 		}
@@ -124,24 +110,20 @@ stock PUG_SetFullBuyzone(bool:bEnable)
  *
  * @noreturn
  */
-stock PUG_TeamsRandomize()
-{
+stock PUG_TeamsRandomize() {
 	new iPlayers[MAX_PLAYERS],iNum;
 	get_players(iPlayers,iNum);
 	
-	for(new i;i < iNum;i++)
-	{
-		if(!PUG_PLAYER_IN_TEAM(iPlayers[i]))
-		{
+	for(new i;i < iNum;i++) {
+		if(!PUG_PLAYER_IN_TEAM(iPlayers[i])) {
 			iPlayers[i--] = iPlayers[--iNum];
 		}
 	}
-    
+
 	new iPlayer,iRandom;
 	new CsTeams:iTeam = random(2) ? CS_TEAM_T : CS_TEAM_CT;
 	
-	while(iNum)
-	{
+	while(iNum) {
 		iRandom = random(iNum);
 		
 		iPlayer = iPlayers[iRandom];
@@ -159,8 +141,7 @@ stock PUG_TeamsRandomize()
  *
  * @noreturn
  */
-stock PUG_TeamsOptimize()
-{
+stock PUG_TeamsOptimize() {
 	new iSkills[MAX_PLAYERS],iSorted[MAX_PLAYERS];
 	
 	new iPlayers[MAX_PLAYERS],iNum,iPlayer;
@@ -168,12 +149,10 @@ stock PUG_TeamsOptimize()
 	
 	new iFrags;
 	
-	for(new i;i < iNum;i++)
-	{
+	for(new i;i < iNum;i++) {
 		iPlayer = iPlayers[i];
 		
-		if(PUG_PLAYER_IN_TEAM(iPlayer))
-		{
+		if(PUG_PLAYER_IN_TEAM(iPlayer)) {
 			iFrags = get_user_frags(iPlayer);
 			iSorted[iPlayer] = iSkills[iPlayer] = (get_user_time(iPlayer,1) / ((iFrags < 1) ? 1 : iFrags));	
 		}
@@ -183,22 +162,17 @@ stock PUG_TeamsOptimize()
 
 	new CsTeams:iCheck = CS_TEAM_T;
 	
-	for(new i;i < sizeof(iSorted);i++)
-	{
-		for(new j;j < iNum;j++)
-		{
+	for(new i;i < sizeof(iSorted);i++) {
+		for(new j;j < iNum;j++) {
 			iPlayer = iPlayers[j];
 			
-			if(PUG_PLAYER_IN_TEAM(iPlayer))
-			{
-				if(iSkills[iPlayer] == iSorted[i])
-				{
+			if(PUG_PLAYER_IN_TEAM(iPlayer)) {
+				if(iSkills[iPlayer] == iSorted[i]) {
 					cs_set_user_team(iPlayer,iCheck);
 					
 					iCheck++;
 					
-					if(iCheck > CS_TEAM_CT)
-					{
+					if(iCheck > CS_TEAM_CT) {
 						iCheck = CS_TEAM_T;
 					}
 				}	

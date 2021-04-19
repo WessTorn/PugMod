@@ -19,17 +19,14 @@ stock g_iViewMenu[MAX_PLAYERS+1] = {-1,...};
  *
  * @noreturn
  */
-stock PUG_DisplayMenuAll(iMenu)
-{
+stock PUG_DisplayMenuAll(iMenu) {
 	new iPlayers[MAX_PLAYERS],iNum,iPlayer;
 	get_players(iPlayers,iNum,"ch");
 	
-	for(new i;i < iNum;i++) 
-	{
+	for(new i;i < iNum;i++)  {
 		iPlayer = iPlayers[i];
 
-		if(1 <= get_user_team(iPlayer) <= 2)
-		{
+		if(1 <= get_user_team(iPlayer) <= 2) {
 			PUG_DisplayMenuSingle(iPlayer,iMenu);
 		}
 	}
@@ -47,24 +44,18 @@ stock PUG_DisplayMenuAll(iMenu)
  *
  * @noreturn
  */
-stock PUG_DisplayMenuSingle(id,iMenu)
-{
+stock PUG_DisplayMenuSingle(id,iMenu) {
 	g_iViewMenu[id] = iMenu;
 	PUG_DisplayMenuClient(id);
 }
 
-public PUG_DisplayMenuClient(id)
-{
-	if(is_user_connected(id))
-	{
+public PUG_DisplayMenuClient(id) {
+	if(is_user_connected(id)) {
 		new iMenu[2];
 
-		if(!player_menu_info(id,iMenu[0],iMenu[1]))
-		{
+		if(!player_menu_info(id,iMenu[0],iMenu[1])) {
 			menu_display(id,g_iViewMenu[id]);	
-		}
-		else
-		{
+		} else {
 			set_task(1.0,"PUG_DisplayMenuClient",id);	
 		}
 	}
@@ -77,8 +68,7 @@ public PUG_DisplayMenuClient(id)
  *
  * @noreturn
  */
-stock PUG_InMenu(id)
-{
+stock PUG_InMenu(id) {
 	return (g_iViewMenu[id] != -1);
 }
 
@@ -89,23 +79,17 @@ stock PUG_InMenu(id)
  *
  * @noreturn
  */
-stock PUG_CancelMenu(id)
-{
+stock PUG_CancelMenu(id) {
 	show_menu(id,0,"^n",1);
 	
-	if(id)
-	{
+	if(id) {
 		g_iViewMenu[id] = -1;
 		menu_cancel(id);
-	}
-	else
-	{
+	} else {
 		arrayset(g_iViewMenu,-1,sizeof(g_iViewMenu));
 		
-		for(new iPlayer;iPlayer <= MaxClients;iPlayer++)
-		{
-			if(is_user_connected(iPlayer))
-			{
+		for(new iPlayer;iPlayer <= MaxClients;iPlayer++) {
+			if(is_user_connected(iPlayer)) {
 				menu_cancel(iPlayer);
 			}
 		}

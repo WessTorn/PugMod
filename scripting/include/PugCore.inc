@@ -18,13 +18,12 @@
 	#pragma loadlib "PugCore"
 #endif
 
-#define PUG_MOD_PLUGIN 		"CS Pug Mod"
-#define PUG_MOD_VERSION		"3.1.1"
-#define PUG_MOD_AUTHOR		"SmileY"
-#define PUG_MOD_HEADER		"^4[PUG]^1"
+#define PUG_MOD_PLUGIN 		"Auto-MIx"
+#define PUG_MOD_VERSION		"1.0.0"
+#define PUG_MOD_AUTHOR		"WessTorn"
+#define PUG_MOD_HEADER		"^1>"
 
-enum _:PUG_MOD_STATES
-{
+enum _:PUG_MOD_STATES {
 	STATE_DEAD,
 	STATE_WARMUP,
 	STATE_START,
@@ -35,8 +34,7 @@ enum _:PUG_MOD_STATES
 	STATE_END
 };
 
-stock const PUG_MOD_STATES_STR[PUG_MOD_STATES][] =
-{
+stock const PUG_MOD_STATES_STR[PUG_MOD_STATES][] = {
 	"Dead",
 	"Warmup",
 	"Starting",
@@ -47,8 +45,7 @@ stock const PUG_MOD_STATES_STR[PUG_MOD_STATES][] =
 	"Finished"
 };
 
-stock const PUG_MOD_CS_TEAMS_STR[CsTeams][] =
-{
+stock const PUG_MOD_CS_TEAMS_STR[CsTeams][] = {
 	"Unassigned",
 	"Terrorists",
 	"Counter-Terrorists",
