@@ -21,7 +21,7 @@ At the end, server will start a vote map to changelevel to next map automaticall
 <li>Spectators support and management</li></li>
 <li>Warmup Rounds</li>
 <li>Infinite spawn, spawn protection, infinite money and ammo on warmup</li></li>
-<li>Display round stats with some commands like .dmg, .hp or .sum and others</li>
+<li>Display round stats with some commands like /dmg, /hp or /sum and others</li>
 <li>Multi language support</li></li>
 <li>Admin flag manager support</li>
 <li>Admin commands (Like kick, ban start or stop the pug)</li></li>

@@ -150,5 +150,5 @@ public PUG_DamageSummary(id) {
 		client_print_color(id, id, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CMD_ERROR");
 	}
 
-	return PLUGIN_HANDLED;
+	returPUG_CommandClientn PLUGIN_HANDLED;
 }

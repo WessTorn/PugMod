@@ -90,7 +90,7 @@ public PUG_Event(iState) {
 				set_pcvar_num(g_pMapVote, 0);
 
 				set_task(5.0, "PUG_ChangeLevel", MapIndex);
-				client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_NEXTMAP", g_szMapList[MapIndex]);
+				client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_NEXTMAP", g_szMapList[MapIndex]);
 			}
 		} else {
 			new iEnforcement = get_pcvar_num(g_pTeamEnforcement);
@@ -115,14 +115,14 @@ public PUG_VoteStart(iType) {
 		PUG_DisplayMenuAll(g_iMenuMap);
 		set_task(0.5, "PUG_HudList", PUG_TASK_HUDS_MAPS, .flags = "b");
 
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_START");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_START");
 	} else {
 		arrayset(g_iTeamVotes, 0, sizeof(g_iTeamVotes));
 
 		PUG_DisplayMenuAll(g_iMenuTeams);
 		set_task(0.5, "PUG_HudList", PUG_TASK_HUDS_TEAM, .flags = "b");
 
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMVOTE_START");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMVOTE_START");
 	}
 
 	set_task(get_pcvar_float(g_pVoteDelay), "PUG_VoteEnd", iType);
@@ -286,14 +286,14 @@ PUG_GetVoteCount(iType) {
 		}
 
 		if (!g_iMapVotes[iWinner]) {
-			client_print_color(0, print_team_red, "%s %L %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_FAIL", LANG_SERVER, "PUG_NOVOTES");
+			client_print_color(0, print_team_blue, "%s %L %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_FAIL", LANG_SERVER, "PUG_NOVOTES");
 			return 0;
 		}
 
 		set_pcvar_num(g_pMapVote, 0);
 		set_task(5.0, "PUG_ChangeLevel", iWinner);
 
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_NEXTMAP", g_szMapList[iWinner]);
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_VOTEMAP_NEXTMAP", g_szMapList[iWinner]);
 
 		return g_iMapVotes[iWinner];
 	} else {
@@ -314,7 +314,7 @@ PUG_GetVoteCount(iType) {
 		}
 
 		if (!g_iTeamVotes[iWinner]) {
-			client_print_color(0, print_team_red, "%s %L %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMVOTE_FAIL", LANG_SERVER, "PUG_NOVOTES");
+			client_print_color(0, print_team_blue, "%s %L %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMVOTE_FAIL", LANG_SERVER, "PUG_NOVOTES");
 			return 0;
 		}
 
@@ -351,7 +351,7 @@ public PUG_ChangeTeams(iType) {
 			get_user_name(g_iCaptain[0], szName[0], charsmax(szName[]));
 			get_user_name(g_iCaptain[1], szName[1], charsmax(szName[]));
 
-			client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_ARE", szName[0], szName[1]);
+			client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_ARE", szName[0], szName[1]);
 
 			for (new i; i < iNum; i++) {
 				iPlayer = iPlayers[i];
@@ -370,24 +370,24 @@ public PUG_ChangeTeams(iType) {
 	}
 	case 2: {
 		PUG_TeamsRandomize();
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_RANDOM");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_RANDOM");
 
 		PUG_RunState();
 	}
 	case 3: {
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_SAME");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_SAME");
 
 		PUG_RunState();
 	}
 	case 4: {
 		PUG_TeamsOptimize();
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_SKILL");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_SKILL");
 
 		PUG_RunState();
 	}
 	case 5: {
 		PUG_TeamsSwap();
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_SWAP");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_TEAMS_SWAP");
 
 		PUG_RunState();
 	}
@@ -409,13 +409,13 @@ public PUG_CaptainMenu(id) {
 
 			PUG_SetTeamAndRespawn(iPlayer, CS_TEAM_T);
 
-			client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_NEW_T", szName);
+			client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_NEW_T", szName);
 		} else if (id == g_iCaptain[1]) {
 			g_iCaptain[1] = iPlayer;
 
 			PUG_SetTeamAndRespawn(iPlayer, CS_TEAM_CT);
 
-			client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_NEW_CT", szName);
+			client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_NEW_CT", szName);
 		}
 
 		set_task(2.0, "PUG_CaptainMenu", iPlayer);
@@ -496,7 +496,7 @@ public PUG_CaptainPickUpRandom(id) {
 					get_user_name(id, szName[0], charsmax(szName[]));
 					get_user_name(iPlayer, szName[1], charsmax(szName[]));
 
-					client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_PICK", szName[0], szName[1]);
+					client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_CAPTAINS_PICK", szName[0], szName[1]);
 				}
 
 				set_task(2.0, "PUG_CaptainMenu", (id == g_iCaptain[0]) ? g_iCaptain[1] : g_iCaptain[0]);

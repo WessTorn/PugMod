@@ -27,6 +27,7 @@ public plugin_init() {
 	register_dictionary("PugReady.txt");
 
 	PUG_RegCommand("ready", "PUG_Ready", ADMIN_ALL, "PUG_DESC_READY");
+	PUG_RegCommand("r", "PUG_Ready", ADMIN_ALL, "PUG_DESC_READY");
 	PUG_RegCommand("notready", "PUG_NotReady", ADMIN_ALL, "PUG_DESC_NOTREADY");
 
 	PUG_RegCommand("forceready", "PUG_ForceReady", ADMIN_LEVEL_A, "PUG_DESC_FORCEREADY");
@@ -36,9 +37,9 @@ public PUG_Event(iState) {
 	g_iState = iState;
 
 	if (iState == STATE_HALFTIME) {
-		if (PUG_GetPlayersNum(true) < g_iPlayersMin) {
+		/*if (PUG_GetPlayersNum(true) < g_iPlayersMin) {
 			PUG_ReadySystem(true);
-		}
+		}*/
 	} else {
 		PUG_ReadySystem(iState == STATE_WARMUP);
 	}
@@ -52,7 +53,7 @@ PUG_ReadySystem(bool: Enable) {
 		if (get_pcvar_num(g_pReadyListType)) {
 			set_task(0.5, "PUG_HudListReady", PUG_HUD_LIST, .flags = "b");
 
-			client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_READY_START");
+			client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_READY_START");
 		} else {
 			g_iSystemTime = get_systime();
 
@@ -88,17 +89,17 @@ public PUG_HudListReady() {
 	if (iReadyCount >= g_iPlayersMin) {
 		PUG_ReadySystem(false);
 
-		client_print_color(0, print_team_red, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_ALL_READY");
+		client_print_color(0, print_team_blue, "%s %L", PUG_MOD_HEADER, LANG_SERVER, "PUG_ALL_READY");
 		PUG_RunState();
 	} else {
 		set_hudmessage(0, 255, 0, 0.23, 0.02, 0, 0.0, 0.6, 0.0, 0.0, 1);
 		show_hudmessage(0, "%L", LANG_SERVER, "PUG_LIST_NOTREADY", (iPlayersCount - iReadyCount), g_iPlayersMin);
 
-		set_hudmessage(0, 255, 0, 0.58, 0.02, 0, 0.0, 0.6, 0.0, 0.0, 2);
-		show_hudmessage(0, "%L", LANG_SERVER, "PUG_LIST_READY", iReadyCount, g_iPlayersMin);
+		//set_hudmessage(0, 255, 0, 0.58, 0.02, 0, 0.0, 0.6, 0.0, 0.0, 2);
+		//show_hudmessage(0, "%L", LANG_SERVER, "PUG_LIST_READY", iReadyCount, g_iPlayersMin);
 
-		set_hudmessage(255, 255, 225, 0.58, 0.02, 0, 0.0, 0.6, 0.0, 0.0, 3);
-		show_hudmessage(0, "^n%s", szList[0]);
+		//set_hudmessage(255, 255, 225, 0.58, 0.02, 0, 0.0, 0.6, 0.0, 0.0, 3);
+		//show_hudmessage(0, "^n%s", szList[0]);
 
 		set_hudmessage(255, 255, 225, 0.23, 0.02, 0, 0.0, 0.6, 0.0, 0.0, 4);
 		show_hudmessage(0, "^n%s", szList[1]);
@@ -106,7 +107,7 @@ public PUG_HudListReady() {
 }
 
 public PUG_HudListTimer() {
-	set_hudmessage(0, 255, 0, -1.0, 0.3, 0, 0.0, 0.8, 0.0, 0.0, 1);
+	set_hudmessage(0, 255, 0, -1.0, 0.02, 0, 0.0, 0.8, 0.0, 0.0, 1);
 
 	new iRemainPlayers = (g_iPlayersMin - PUG_GetPlayersNum(true));
 
@@ -178,7 +179,7 @@ public PUG_ForceReady(id, iLevel) {
 		new iPlayer = cmd_target(id, szName, CMDTARGET_OBEY_IMMUNITY);
 
 		if (iPlayer) {
-			PUG_CommandClient(id, "!forceready", "PUG_FORCE_READY", iPlayer, PUG_Ready(iPlayer));
+			PUG_CommandClient(id, "/forceready", "PUG_FORCE_READY", iPlayer, PUG_Ready(iPlayer));
 		}
 	}
 

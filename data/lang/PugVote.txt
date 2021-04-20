@@ -32,38 +32,3 @@ PUG_VOTE_STOP_VOTED	= You already voted to stop the match.
 PUG_VOTE_STOP_MSG1 	= ^3%s^1 from (^3%s^1) voted for surrender. Lacking ^4%i^1 vote(s) stop the match.
 PUG_VOTE_STOP_MSG2	= Say ^4.vote^1 to vote for stop the match.
 PUG_VOTE_STOP_END	= Game Over! The ^3%s^1 Surrendered!
-
-[bp]
-PUG_VOTE_DESC		= Abre o menu de votações
-PUG_VOTE_MENU		= Iniciar votação:
-
-PUG_VOTE_KICK_MENU 	= Vote Kick:
-PUG_VOTE_KICK_MAIN 	= Escolha um jogador.
-PUG_VOTE_KICK_NEED	= Necessario mais ^3%i^1 jogadores para o vote kick.
-PUG_VOTE_KICK_MSG	= Kickado por Vote Kick.
-PUG_VOTE_KICK_KICKED	= ^3%s^1 Kickado: ^4%i^1 votos alcancados.
-PUG_VOTE_KICK_VOTED	= ^3%s^1 votou em %s: Mais ^4%i^1 votos para kickar.
-
-PUG_VOTE_MAP_MENU	= Escolha o mapa:
-PUG_VOTE_MAP_MAIN	= Escolha um mapa para nomear.
-PUG_VOTE_MAP_VOTE 	= Uma votacao esta em execucao, tente novamente.
-PUG_VOTE_MAP_VOTED	= Voce ja escolheu: ^3%s
-PUG_VOTE_MAP_PICK1 	= ^3%s^1 nomeou ^4%s^1: Restando ^4%i^1 votos para alterar.
-PUG_VOTE_MAP_PICK2 	= Say ^3.vote^1 se voce quer nomear um mapa.
-PUG_VOTE_MAP_CHANGE 	= Alterando mapa para ^4%s^1...
-
-PUG_VOTE_TIMEOUT_MSG1 	= ^3%s^1 (^3%s^1) votou para pausar o jogo. Faltam ^4%i^1 voto(s) para pausa.
-PUG_VOTE_TIMEOUT_MSG2	= Say ^4.vote^1 para votar a pausa.
-PUG_VOTE_TIMEOUT_PAUSE	= O jogo sera pausado em ^3%i^1 segundos no proximo round.
-PUG_VOTE_TIMEOUT_PAUSE2	= A partida ja sera pausada no proximo round.
-PUG_VOTE_TIMEOUT_VOTED 	= Voce ja votou para pausar o jogo.
-PUG_VOTE_TIMEOUT_TEAM 	= O time ^3%s^1 nao pode mais pausar o jogo.
-PUG_VOTE_TIMEOUT_LIVE	= A partida ainda nao comecou.
-PUG_VOTE_TIMEOUT_PAUSED = Jogo pausado por ^3%i^1 segundos.
-
-PUG_VOTE_STOP_LIVE	= A partida ainda nao comecou.
-PUG_VOTE_STOP_TEAM	= Voce deve entrar em um time primeiro.
-PUG_VOTE_STOP_VOTED	= Voce ja votou para cancelar a partida.
-PUG_VOTE_STOP_MSG1 	= ^3%s^1 (^3%s^1) votou para se render. Faltam ^4%i^1 voto(s) para cancelar a partida.
-PUG_VOTE_STOP_MSG2	= Say ^4.vote^1 para votar o encerramento da partida.
-PUG_VOTE_STOP_END	= Fim de jogo! Os ^3%s^1 se renderam!

@@ -71,7 +71,7 @@ public PUG_Kick(id, iLevel) {
 			server_cmd("kick #%i ^"%s^"", get_user_userid(iPlayer), szReason);
 		}
 
-		PUG_CommandClient(id, "!kick", "PUG_KICK", iPlayer, iPlayer);
+		PUG_CommandClient(id, "/kick", "PUG_KICK", iPlayer, iPlayer);
 	}
 
 	return PLUGIN_HANDLED;
@@ -88,7 +88,7 @@ public PUG_Kill(id, iLevel) {
 			user_kill(iPlayer, 1)
 		}
 
-		PUG_CommandClient(id, "!kill", "PUG_KILL", iPlayer, iPlayer);
+		PUG_CommandClient(id, "/kill", "PUG_KILL", iPlayer, iPlayer);
 	}
 
 	return PLUGIN_HANDLED;
@@ -104,7 +104,7 @@ public PUG_Rcon(id, iLevel) {
 			server_cmd(szCommand);
 		}
 
-		PUG_ExecuteCommand(id, "!rcon", "PUG_RCON", szCommand[0]);
+		PUG_ExecuteCommand(id, "/rcon", "PUG_RCON", szCommand[0]);
 	}
 
 	return PLUGIN_HANDLED;
@@ -122,7 +122,7 @@ public PUG_Map(id, iLevel) {
 			server_cmd("changelevel %s", szMap);
 		}
 
-		PUG_ExecuteCommand(id, "!map", "PUG_MAP", bIsMapValid);
+		PUG_ExecuteCommand(id, "/map", "PUG_MAP", bIsMapValid);
 	}
 
 	return PLUGIN_HANDLED;
@@ -158,7 +158,7 @@ public PUG_Ban(id, iLevel) {
 			server_cmd("banid %i #%i kick;writeid", iTime, get_user_userid(iPlayer));
 		}
 
-		PUG_CommandClient(id, "!ban", "PUG_BAN", iPlayer, iPlayer);
+		PUG_CommandClient(id, "/ban", "PUG_BAN", iPlayer, iPlayer);
 	}
 
 	return PLUGIN_HANDLED;

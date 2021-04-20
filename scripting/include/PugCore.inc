@@ -19,7 +19,7 @@
 #endif
 
 #define PUG_MOD_PLUGIN 		"Auto-MIx"
-#define PUG_MOD_VERSION		"1.0.0"
+#define PUG_MOD_VERSION		"1.0.3"
 #define PUG_MOD_AUTHOR		"WessTorn"
 #define PUG_MOD_HEADER		"^1>"
 

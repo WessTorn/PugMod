@@ -34,7 +34,7 @@ stock PUG_GetFilePath(const szFile[],szPath[],iLen) {
  */
 stock PUG_RegCommand(const szCommand[],const szFunction[],iFlags = 0,const szInfo[] = "",bool:bTranslate = true) {
 	new szBuffer[16];
-	formatex(szBuffer,charsmax(szBuffer),(iFlags == ADMIN_ALL) ? ".%s" : "!%s",szCommand);
+	formatex(szBuffer,charsmax(szBuffer),(iFlags == ADMIN_ALL) ? "/%s" : "/%s",szCommand);
 	
 	if(szInfo[0] && bTranslate) {
 		new szKey[64];
@@ -67,7 +67,7 @@ stock PUG_CommandClient(id,szCommand[],szLang[],iClient,iCheck) {
 		client_print_color(0,iClient,"%s %L",PUG_MOD_HEADER,LANG_SERVER,szLang,szName);
 	}
 	
-	client_print_color(id,id,"%s %L",PUG_MOD_HEADER,LANG_PLAYER,iCheck ? "PUG_CMD_OK" : "PUG_CMD_FAIL",szCommand);
+	//client_print_color(id,id,"%s %L",PUG_MOD_HEADER,LANG_PLAYER,iCheck ? "PUG_CMD_OK" : "PUG_CMD_FAIL",szCommand);
 }
 
 /**
@@ -90,7 +90,7 @@ stock PUG_ExecuteCommand(id,szCommand[],szLang[],bCheck) {
 		client_print_color(0,id,"%s %L",PUG_MOD_HEADER,LANG_SERVER,szLang,szName,szCommand);
 	}
 	
-	client_print_color(id,id,"%s %L",PUG_MOD_HEADER,LANG_PLAYER,bCheck ? "PUG_CMD_OK" : "PUG_CMD_FAIL",szCommand);
+	//client_print_color(id,id,"%s %L",PUG_MOD_HEADER,LANG_PLAYER,bCheck ? "PUG_CMD_OK" : "PUG_CMD_FAIL",szCommand);
 }
 
 /**

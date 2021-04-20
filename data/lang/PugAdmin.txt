@@ -1,3 +1,17 @@
+﻿[ru]
+PUG_DESC_KICK 	= <player> [reason] - Кик игрока
+PUG_DESC_KILL 	= <player> - Убить игрока
+PUG_DESC_RCON 	= <command> - Отправить команду rcon на сервер
+PUG_DESC_MAP 	= <map> - Сменить карту
+PUG_DESC_MSG 	= <text> - Отправить сообщение в чат всем игрокам 
+PUG_DESC_BAN 	= <player> [minutes] - Пермаментный бан игрока
+
+PUG_KICK 	= Админ: Кикнул ^3%s^1 с сервера.
+PUG_KILL 	= Админ: Убил ^3%s^1.
+PUG_RCON 	= Админ: Выполнил rcon команду.
+PUG_MAP 	= Админ: Сменил карту.
+PUG_BAN 	= Админ: Забанил ^3%s^1 навсегда.
+
 [en]
 PUG_DESC_KICK 	= <player> [reason] - Kick a player
 PUG_DESC_KILL 	= <player> - Kill the target player
@@ -6,22 +20,9 @@ PUG_DESC_MAP 	= <map> - Change the map
 PUG_DESC_MSG 	= <text> - Send a chat message to all players
 PUG_DESC_BAN 	= <player> [minutes] - Permanent ban an player
 
-PUG_KICK 	= ADMIN: Kicked %s from server.
-PUG_KILL 	= ADMIN: Killed %s.
-PUG_RCON 	= ADMIN: Executed an command.
-PUG_MAP 	= ADMIN: Changed the map.
-PUG_BAN 	= ADMIN: Banned %s permanently.
+PUG_KICK 	= Admin: Kicked ^3%s^1 from server.
+PUG_KILL 	= Admin: Killed ^3%s^1.
+PUG_RCON 	= Admin: Executed an command.
+PUG_MAP 	= Admin: Changed the map.
+PUG_BAN 	= Admin: Banned ^3%s^1 permanently.
 
-[bp]
-PUG_DESC_KICK 	= <player> [motivo] - Kickar o jogador
-PUG_DESC_KILL 	= <player> - Matar o jogador alvo
-PUG_DESC_RCON 	= <comando> - Enviar um comando ao servidor
-PUG_DESC_MAP 	= <mapa> - Alterar o mapa
-PUG_DESC_MSG 	= <text> - Envar uma mensagem global
-PUG_DESC_BAN 	= <player> [minutos] - Banir permanentemente o alvo
-
-PUG_KICK 	= ADMIN: Kickou %s do servidor.
-PUG_KILL 	= ADMIN: Matou %s.
-PUG_RCON 	= ADMIN: Executou um comando.
-PUG_MAP 	= ADMIN: Alterou o mapa.
-PUG_BAN 	= ADMIN: Baniu %s.
